@@ -1,0 +1,73 @@
+definitions:
+  domain.Repository:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      forks:
+        type: integer
+      name:
+        type: string
+      stars:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a server for get information about github repository
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: My GitHub Repository API
+  version: "1.0"
+paths:
+  /api/repo:
+    get:
+      consumes:
+      - application/json
+      description: 'Возвращает данные о репозитории: название, описание, звёзды, форки
+        и дату создания'
+      parameters:
+      - description: Владелец репозитория (например, golang)
+        in: query
+        name: owner
+        required: true
+        type: string
+      - description: Название репозитория (например, go)
+        in: query
+        name: repo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Информация о репозитории
+          schema:
+            $ref: '#/definitions/domain.Repository'
+        "400":
+          description: 'Ошибка: не указаны owner или repo'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Репозиторий не найден
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "503":
+          description: Collector service недоступен
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить информацию о репозитории
+      tags:
+      - repositories
+swagger: "2.0"
