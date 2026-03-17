@@ -1,0 +1,19 @@
+syntax = "proto3";
+package collector;
+option go_package = "collector/proto";
+service CollectorService {
+	rpc getRepository(RepositoryInfo) returns (Repository);
+}
+
+message RepositoryInfo {
+	string owner = 1;
+	string name = 2;
+}
+
+message Repository {
+	string name = 1;
+	string description = 2;
+	int32 starsCount = 3;
+	int32 forks = 4;
+	string createdAt = 5;
+}

@@ -1,0 +1,14 @@
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a server for get information about github repository
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: My GitHub Repository API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
